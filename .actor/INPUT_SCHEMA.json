@@ -1,0 +1,120 @@
+{
+  "title": "NetIntel Input Configuration",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "target": {
+      "title": "🎯 Domain or IP address to check",
+      "type": "string",
+      "description": "Type a domain (google.com) or IP address (8.8.8.8)",
+      "editor": "textfield",
+      "example": "google.com"
+    },
+    "targetType": {
+      "title": "Type",
+      "type": "string",
+      "description": "Leave on Auto-detect - we'll figure it out",
+      "default": "auto",
+      "enum": ["auto", "ip", "domain"],
+      "enumTitles": ["Auto-detect", "IP Address", "Domain"],
+      "editor": "select"
+    },
+    "analysisType": {
+      "title": "What information do you need?",
+      "type": "array",
+      "description": "Select what you want to find out",
+      "editor": "select",
+      "default": ["whois", "dns", "geolocation"],
+      "items": {
+        "type": "string",
+        "enum": [
+          "whois",
+          "dns",
+          "ssl",
+          "geolocation",
+          "reputation",
+          "ports"
+        ],
+        "enumTitles": [
+          "📋 Owner & Registration (Who owns it? When does it expire?)",
+          "🌐 DNS & IP Info (What IP? Where does email go?)",
+          "🔒 SSL Certificate (When does it expire? Is it valid?)",
+          "📍 Location & ISP (Where is it? Who hosts it?)",
+          "🛡️ Security Check (Is it safe? Any threats?)",
+          "🔌 Open Ports (What services are running?)"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "batchMode": {
+      "title": "Check multiple targets?",
+      "type": "boolean",
+      "description": "Enable to check many domains/IPs at once",
+      "default": false,
+      "editor": "checkbox"
+    },
+    "batchTargets": {
+      "title": "List of domains or IPs",
+      "type": "array",
+      "description": "One per line (e.g., google.com, github.com, 8.8.8.8)",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timeout": {
+      "title": "Timeout (seconds)",
+      "type": "integer",
+      "description": "How long to wait for results (30 is usually enough)",
+      "default": 30,
+      "minimum": 5,
+      "maximum": 300,
+      "unit": "seconds"
+    },
+    "includeRawData": {
+      "title": "Include raw technical data",
+      "type": "boolean",
+      "description": "For developers only",
+      "default": false,
+      "editor": "checkbox"
+    },
+    "concurrency": {
+      "title": "Batch concurrency",
+      "type": "integer",
+      "description": "How many to check at once (5 recommended)",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "exportFormat": {
+      "title": "Export results as",
+      "type": "string",
+      "description": "Download format (CSV works in Excel)",
+      "default": "none",
+      "enum": ["none", "json", "csv", "jsonl"],
+      "enumTitles": [
+        "No export",
+        "JSON",
+        "CSV (Excel/Sheets)",
+        "JSON Lines"
+      ],
+      "editor": "select"
+    },
+    "exportPretty": {
+      "title": "Pretty print JSON",
+      "type": "boolean",
+      "description": "Format JSON with indentation",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "exportIncludeMetadata": {
+      "title": "Include metadata",
+      "type": "boolean",
+      "description": "Add timestamp and record count",
+      "default": true,
+      "editor": "checkbox"
+    }
+  },
+  "required": ["target"]
+}

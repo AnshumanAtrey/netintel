@@ -1,0 +1,20 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "NetIntel Intelligence Output",
+    "description": "Unified IP & domain intelligence reports. Each dataset item is a consolidated report combining WHOIS, DNS, SSL, GeoIP, reputation, and port-scan data for a single target, with a confidence score and threat correlation insights.",
+    "type": "object",
+    "properties": {
+        "intelligenceReports": {
+            "type": "string",
+            "title": "Intelligence Reports",
+            "description": "One consolidated record per target analyzed. Each record contains: `target`, `targetType` (ip|domain), `confidenceScore` (0–100), `confidenceLevel`, six `analyses` subkeys (whois, dns, ssl, geolocation, reputation, ports) each in `{success, data, error}` envelope shape, and a `correlation` object with `threatIndicators`, `anomalies`, and `recommendations`.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        },
+        "exports": {
+            "type": "string",
+            "title": "Batch Exports (CSV/JSON/JSONL)",
+            "description": "When the `exportFormat` input is set (csv, json, or jsonl), a downloadable export file is saved to the key-value store. Empty when export is disabled.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/keys"
+        }
+    }
+}

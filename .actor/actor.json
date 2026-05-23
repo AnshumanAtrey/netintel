@@ -1,0 +1,31 @@
+{
+  "actorSpecification": 1,
+  "name": "netintel",
+  "title": "NetIntel - Unified IP & Domain Intelligence",
+  "version": "1.5",
+  "description": "Get instant security and technical information about any domain or IP address. Check ownership, SSL certificates, email health, location, security threats, and more. Perfect for security teams and website owners.",
+  "categories": ["SECURITY", "DEVELOPER_TOOLS"],
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "input": "./INPUT_SCHEMA.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "NetIntel Results",
+      "views": {
+        "overview": {
+          "title": "Overview",
+          "transformation": {
+            "fields": [
+              "target",
+              "targetType",
+              "confidenceScore",
+              "timestamp"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
