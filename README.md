@@ -1,5 +1,8 @@
 # 🔍 NetIntel - Domain & IP Intelligence
 
+📦 **Open source · MIT:** [github.com/AnshumanAtrey/netintel](https://github.com/AnshumanAtrey/netintel)
+
+
 Get instant security and technical information about any domain or IP address. Perfect for security teams, website owners, and IT professionals.
 
 [![Apify Actor](https://img.shields.io/badge/Apify-Actor-blue)](https://apify.com/store)
