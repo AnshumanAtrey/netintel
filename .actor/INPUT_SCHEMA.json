@@ -8,7 +8,8 @@
       "type": "string",
       "description": "Type a domain (google.com) or IP address (8.8.8.8)",
       "editor": "textfield",
-      "example": "google.com"
+      "example": "google.com",
+      "prefill": "google.com"
     },
     "targetType": {
       "title": "Type",
@@ -25,6 +26,7 @@
       "description": "Select what you want to find out",
       "editor": "select",
       "default": ["whois", "dns", "geolocation"],
+      "prefill": ["whois", "dns", "geolocation"],
       "items": {
         "type": "string",
         "enum": [
