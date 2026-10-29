@@ -39,7 +39,13 @@ try {
         const batchResults = await executeBatchAnalysis(input);
         const duration = ((Date.now() - batchStartTime) / 1000).toFixed(2);
 
+        // Apify says a run must stop at its spending limit: a result is delivered only while the limit pays for it.
+        let unpaid = 0;
         for (const result of batchResults) {
+            if (Actor.getChargingManager().calculateMaxEventChargeCountWithinLimit('analysis-completed') < 1) {
+                unpaid = batchResults.length - batchResults.indexOf(result);
+                break;
+            }
             await Actor.pushData({
                 ...result,
                 metadata: {
@@ -50,6 +56,11 @@ try {
                 }
             });
             try { await Actor.charge({ eventName: 'analysis-completed' }); } catch (e) { log.debug(`charge skipped: ${e.message}`); }
+        }
+        if (unpaid) {
+            const msg = `Stopped at this run's spending limit: ${batchResults.length - unpaid} of ${batchResults.length} analyses delivered and charged. Raise the run's maximum cost to get the rest.`;
+            log.warning(msg);
+            await Actor.setStatusMessage(msg).catch(() => {});
         }
 
         if (input.exportFormat && input.exportFormat !== 'none') {

@@ -1,10 +1,10 @@
 {
   "actorSpecification": 1,
   "name": "netintel",
-  "title": "NetIntel - Unified IP & Domain Intelligence",
+  "title": "NetIntel - IP + Domain Intelligence | WHOIS DNS Geo Port",
   "version": "1.5",
-  "description": "Get instant security and technical information about any domain or IP address. Check ownership, SSL certificates, email health, location, security threats, and more. Perfect for security teams and website owners.",
-  "categories": ["SECURITY", "DEVELOPER_TOOLS"],
+  "description": "Unified IP & domain intelligence tool. Get WHOIS, DNS, GeoIP, reputation & port scan data with confidence scores. Reduce false positives by 90%.",
+  "categories": ["DEVELOPER_TOOLS", "AUTOMATION", "OTHER"],
   "dockerfile": "./Dockerfile",
   "readme": "./README.md",
   "input": "./INPUT_SCHEMA.json",

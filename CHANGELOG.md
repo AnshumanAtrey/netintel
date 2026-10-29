@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-30
+
+- Limited permissions (the quality tab's PERMISSION_LEVEL): the actor only reads its input and writes its own run's
+  dataset and key-value store.
+- Batch mode stops at the run's spending limit and says how many analyses were delivered; results past the limit
+  used to be delivered free. Local test: a limit of 2 events delivered 2 of 3 targets.
+- Store discounts: $0.045 per analysis on Scale, $0.04 on Business and above; Free and Starter stay at $0.05.
+- The listing is synced from the repo by CI (`.actor/store.json`, made from the live listing), and two example
+  tasks are published on the Store.
+
 All notable changes to NetIntel will be documented in this file.
 
 ## [1.4.0] - 2025-11-09

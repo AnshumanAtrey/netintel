@@ -1,0 +1,36 @@
+{
+  "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md). Targets are public, well-known hosts.",
+  "options": {
+    "build": "latest",
+    "memoryMbytes": 2048,
+    "timeoutSecs": 300
+  },
+  "tasks": [
+    {
+      "name": "domain-whois-dns-ssl-lookup",
+      "title": "Domain lookup: WHOIS, DNS records and SSL certificate at once",
+      "description": "Look up a domain's WHOIS registration (registrar, dates, name servers), its DNS records (A, AAAA, MX, TXT, NS) and its SSL certificate in one run, with a confidence score per source. Replace github.com with the domain you are checking.",
+      "input": {
+        "target": "github.com",
+        "analysisType": ["whois", "dns", "ssl"]
+      },
+      "seoTitle": "Domain Lookup - WHOIS, DNS Records and SSL Check",
+      "seoDescription": "WHOIS registration, DNS records (A, MX, TXT, NS) and the SSL certificate of a domain in one run, each with a confidence score. Bulk-ready.",
+      "inputSchemaFields": ["target", "analysisType", "timeout"],
+      "datasetView": "overview"
+    },
+    {
+      "name": "ip-address-lookup-location-owner",
+      "title": "IP address lookup: location, owner and reputation of an IP",
+      "description": "Look up an IP address's geolocation (country, city, ISP, ASN), its WHOIS owner and its reputation on blocklists in one run. Works for IPv4 and IPv6; switch on batch mode to check a list.",
+      "input": {
+        "target": "8.8.8.8",
+        "analysisType": ["geolocation", "whois", "reputation"]
+      },
+      "seoTitle": "IP Address Lookup - Location, Owner and Reputation",
+      "seoDescription": "Geolocation, ISP, ASN, WHOIS owner and blocklist reputation of an IP address in one run. IPv4 and IPv6, single or in bulk.",
+      "inputSchemaFields": ["target", "analysisType", "batchMode", "batchTargets"],
+      "datasetView": "overview"
+    }
+  ]
+}

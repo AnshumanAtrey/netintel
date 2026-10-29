@@ -36,7 +36,7 @@ Pay-per-event:
 
 | Event | Price | When it fires |
 |---|---|---|
-| `Analysis Completed` | $0.05 | Charged per target analyzed (WHOIS, DNS, SSL, GeoIP, reputation, port scan combined into one report) |
+| `Analysis Completed` | $0.05 | Charged per target analyzed (WHOIS, DNS, SSL, GeoIP, reputation, port scan combined into one report). On paid Apify plans: $0.045 on Scale, $0.04 on Business and above. A batch stops at the run's spending limit. |
 
 ### Typical scan costs
 

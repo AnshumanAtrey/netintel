@@ -1,0 +1,67 @@
+{
+  "$comment": "Store listing fields that apify push never sends. Applied by scripts/store-metadata.mjs after every deploy. Title, description and categories live in actor.json. Created 2026-10-29 from the live listing, so adding the CI kit changed nothing by itself.",
+  "actorId": "PDZavfP6ohVToZC6V",
+  "seoTitle": "NetIntel - IP & Domain Intelligence | WHOIS DNS Geo Bulk",
+  "seoDescription": "Network reconnaissance API. Unified IP + domain intelligence: WHOIS, DNS, GeoIP, ASN, reputation, port scanning. Confidence-scored results. Bulk-ready for security analysts, due diligence, vetting.",
+  "exampleRunInput": {
+    "target": "github.com",
+    "targetType": "auto",
+    "analysisType": [
+      "whois",
+      "dns",
+      "ssl",
+      "geolocation",
+      "reputation",
+      "ports"
+    ],
+    "timeout": 30
+  },
+  "actorPermissionLevel$comment": "Limited since 2026-10-30 (the quality tab's PERMISSION_LEVEL): the code reads its input and writes only its own run's dataset and key-value store, which limited permissions allow.",
+  "actorPermissionLevel": "LIMITED_PERMISSIONS",
+  "isPublic": true,
+  "defaultRunOptions": {
+    "build": "latest",
+    "memoryMbytes": 2048,
+    "timeoutSecs": 300
+  },
+  "pricing": {
+    "apply": true,
+    "$comment": "Store discounts (owner's Gentle ladder, rolled out 2026-10-29 after holehe and social-analyzer): Free and Starter keep the flat price, Scale pays 10% less, Business and above 20% less; apify-actor-start stays flat. Aug-Oct paid revenue of this actor came almost all from Starter, and Apify bills our platform cost of Scale and Business runs lower only when discounts are on (compute $0.16 and $0.13 per CU instead of $0.20, https://docs.apify.com/actors/monetize/pricing-and-costs.md). The CI script applies first-time pricing and decreases; increases go through Console with 14 days' notice.",
+    "pricingInfos": [
+      {
+        "pricingModel": "PAY_PER_EVENT",
+        "apifyMarginPercentage": 0.2,
+        "pricingPerEvent": {
+          "actorChargeEvents": {
+            "analysis-completed": {
+              "eventTitle": "Analysis Completed",
+              "eventDescription": "Charged per target analyzed (WHOIS, DNS, SSL, GeoIP, reputation, port scan combined into one report).",
+              "isPrimaryEvent": true,
+              "eventTieredPricingUsd": {
+                "FREE": {
+                  "tieredEventPriceUsd": 0.05
+                },
+                "BRONZE": {
+                  "tieredEventPriceUsd": 0.05
+                },
+                "SILVER": {
+                  "tieredEventPriceUsd": 0.045
+                },
+                "GOLD": {
+                  "tieredEventPriceUsd": 0.04
+                },
+                "PLATINUM": {
+                  "tieredEventPriceUsd": 0.04
+                },
+                "DIAMOND": {
+                  "tieredEventPriceUsd": 0.04
+                }
+              }
+            }
+          }
+        },
+        "reasonForChange": "Store discounts: Scale plans pay 10% less and Business and enterprise plans 20% less. Free and Starter prices are unchanged."
+      }
+    ]
+  }
+}
