@@ -21,7 +21,7 @@
   "author": "Anshuman Atrey",
   "license": "Apache-2.0",
   "dependencies": {
-    "apify": "^3.2.0",
+    "apify": "^3.7.2",
     "whoiser": "^1.17.3",
     "axios": "^1.6.2",
     "validator": "^13.11.0",
@@ -29,6 +29,6 @@
     "dns-packet": "^5.6.1"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   }
 }
