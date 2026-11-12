@@ -6,6 +6,13 @@ Available as an [Apify Actor](https://apify.com/anshumanatrey/netintel). Pay-per
 
 ---
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add NetIntel to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=NetIntel&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fnetintel), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http netintel "https://mcp.apify.com?tools=anshumanatrey/netintel"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add netintel --url "https://mcp.apify.com?tools=anshumanatrey/netintel"`, then `codex mcp login netintel`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/netintel`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 Takes an IP or domain and returns unified network intelligence: WHOIS registration, full DNS record set (A/AAAA/MX/NS/TXT/CAA/SOA), GeoIP location, ASN and BGP routing, reputation against threat feeds, and optional top-100 port scan. Confidence-scored fields so analysts know which data points are authoritative vs derived.
