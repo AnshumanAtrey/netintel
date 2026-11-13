@@ -8,6 +8,7 @@ import { createExport } from './utils/export.js';
 await Actor.init();
 
 const startTime = Date.now();
+const EXAMPLE_TARGET = 'google.com'; // the form's prefill: analysed free when no target is given, instead of failing
 
 try {
     log.info('╔══════════════════════════════════════════════════════════════════╗');
@@ -17,10 +18,16 @@ try {
     log.info(`Build:       ${process.env.APIFY_ACTOR_BUILD || 'unknown'}`);
     log.info(`Started at:  ${new Date().toISOString()}`);
 
-    const input = await Actor.getInput();
+    const input = (await Actor.getInput()) || {};
 
-    if (!input) {
-        throw new Error('No input provided. Please provide input in storage/key_value_stores/default/INPUT.json');
+    // No target (a blank field passes Apify's input check, and the run ended with only an error row): analyse the
+    // example instead, free, so the run shows what it returns (owner, 2026-11-14).
+    const example = !String(input.target ?? '').trim() && !(input.batchMode && input.batchTargets?.length);
+    if (example) {
+        input.target = EXAMPLE_TARGET;
+        input.analysisType = input.analysisType?.length ? input.analysisType : ['whois', 'dns', 'geolocation'];
+        input.targetType = input.targetType || 'auto';
+        log.warning(`No target given, so this run analyses the example ${EXAMPLE_TARGET}, free.`);
     }
 
     log.info('═══ Input Received ═══');
@@ -110,7 +117,12 @@ try {
                 dataFreshness: new Date().toISOString()
             }
         });
-        try { await Actor.charge({ eventName: 'analysis-completed' }); } catch (e) { log.debug(`charge skipped: ${e.message}`); }
+        if (example) {
+            await Actor.setStatusMessage(`No target was given, so this run analysed the example ${EXAMPLE_TARGET}, free `
+                + 'of charge. Enter your own domain or IP in target.').catch(() => {});
+        } else {
+            try { await Actor.charge({ eventName: 'analysis-completed' }); } catch (e) { log.debug(`charge skipped: ${e.message}`); }
+        }
 
         log.info('═══ Analysis Results ═══');
         log.info(`Target:            ${result.target} (${result.targetType})`);
